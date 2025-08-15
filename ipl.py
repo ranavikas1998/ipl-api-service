@@ -16,6 +16,10 @@ def teamaAPI():
 
 
 def teamVteamAPI(team1, team2):
+
+  valid_teams=list(set(list(matches["Team1"]) + list(matches["Team2"])))
+  if team1 in valid_teams and team2 in valid_teams:
+
     temp_df = matches[
         ((matches["Team1"] == team1) & (matches["Team2"] == team2)) |
         ((matches["Team1"] == team2) & (matches["Team2"] == team1))
@@ -35,3 +39,5 @@ def teamVteamAPI(team1, team2):
         "draws": str(draws)
     }
     return response
+  else:
+      return {"message":"invalid team name"}
